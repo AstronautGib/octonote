@@ -216,3 +216,36 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Additional
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+
+# Database
+*.db
+*.sqlite3
+
+# Whisper / model cache
+*.pt
+*.bin
+models/
+
+# Audio uploads (don't commit real recordings)
+uploads/
+*.wav
+*.mp3
+
+# OS/editor junk
+.DS_Store
+.vscode/
+*.log
+
+# Node (if you add any JS tooling later)
+node_modules/

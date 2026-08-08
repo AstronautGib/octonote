@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceDoc Structured Note",
+  "type": "object",
+  "properties": {
+    "patient_label": {
+      "type": "string",
+      "description": "A non-identifying label for the patient/session, e.g. 'Room 204' or 'Patient A' (never a real name in demo data)"
+    },
+    "shift": {
+      "type": "string",
+      "description": "Shift context if mentioned, e.g. 'Day shift', 'Night shift'"
+    },
+    "vitals": {
+      "type": "object",
+      "properties": {
+        "blood_pressure": {
+          "type": "string"
+        },
+        "heart_rate": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": "string"
+        },
+        "respiratory_rate": {
+          "type": "string"
+        },
+        "oxygen_saturation": {
+          "type": "string"
+        },
+        "pain_level": {
+          "type": "string",
+          "description": "e.g. '3/10' if mentioned"
+        }
+      },
+      "description": "Leave any field as null if not mentioned in the transcript"
+    },
+    "subjective": {
+      "type": "string",
+      "description": "What the patient reported/complained of, in their own words where possible"
+    },
+    "objective": {
+      "type": "string",
+      "description": "Observable/measurable findings the nurse noted (beyond vitals) — e.g. wound appearance, mobility, alertness"
+    },
+    "actions_taken": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Concrete care actions performed, e.g. 'Administered 500mg Tylenol at 14:00', 'Repositioned patient'"
+    },
+    "medications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "dose": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "assessment": {
+      "type": "string",
+      "description": "Nurse's brief clinical impression of patient status, if stated"
+    },
+    "plan": {
+      "type": "string",
+      "description": "Follow-up actions, things to monitor, or handoff notes for the next shift"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Anything the model is unsure about or that seemed ambiguous in the transcript — surfaced to the nurse for review rather than guessed at"
+    }
+  },
+  "required": [
+    "vitals",
+    "subjective",
+    "actions_taken",
+    "plan"
+  ]
+}
