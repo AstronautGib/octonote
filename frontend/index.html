@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceDoc — Spoken Report to Chart Entry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">VoiceDoc</span>
+    </div>
+    <p class="tagline">Speak the report. Review the chart.</p>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: capture + transcript -->
+    <section class="panel panel-capture">
+      <h2 class="panel-title">01 — Capture</h2>
+
+      <div class="capture-controls">
+        <button id="recordBtn" class="btn btn-record" type="button">
+          <span class="rec-dot" aria-hidden="true"></span>
+          <span id="recordLabel">Start recording</span>
+        </button>
+
+        <div class="divider"><span>or</span></div>
+
+        <label class="btn btn-upload" for="fileInput">Upload audio file</label>
+        <input id="fileInput" type="file" accept="audio/*" hidden>
+
+        <span id="fileName" class="file-name"></span>
+      </div>
+
+      <div id="waveform" class="waveform" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <button id="processBtn" class="btn btn-process" type="button" disabled>
+        Transcribe &amp; structure
+      </button>
+
+      <div id="statusMsg" class="status-msg" role="status"></div>
+
+      <div class="transcript-block">
+        <h3>Transcript</h3>
+        <textarea id="transcriptBox" placeholder="Your transcript will appear here after processing..." readonly></textarea>
+      </div>
+
+      <div class="saved-block">
+        <div class="saved-header">
+          <h3>Saved entries</h3>
+          <button id="refreshSavedBtn" class="btn btn-ghost btn-small" type="button">Refresh</button>
+        </div>
+        <ul id="savedList" class="saved-list">
+          <li class="saved-empty">No saved entries yet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RIGHT: structured, editable chart entry -->
+    <section class="panel panel-chart">
+      <h2 class="panel-title">02 — Chart entry</h2>
+
+      <form id="noteForm" class="note-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="f_patient_label">Patient label</label>
+            <input id="f_patient_label" type="text" placeholder="e.g. Room 204 (never a real name)">
+          </div>
+          <div class="field">
+            <label for="f_shift">Shift</label>
+            <input id="f_shift" type="text" placeholder="e.g. Day shift">
+          </div>
+        </div>
+
+        <fieldset class="vitals-grid">
+          <legend>Vitals</legend>
+          <div class="field"><label for="v_bp">BP</label><input id="v_bp" type="text"></div>
+          <div class="field"><label for="v_hr">HR</label><input id="v_hr" type="text"></div>
+          <div class="field"><label for="v_temp">Temp</label><input id="v_temp" type="text"></div>
+          <div class="field"><label for="v_rr">RR</label><input id="v_rr" type="text"></div>
+          <div class="field"><label for="v_spo2">SpO2</label><input id="v_spo2" type="text"></div>
+          <div class="field"><label for="v_pain">Pain</label><input id="v_pain" type="text" placeholder="e.g. 3/10"></div>
+        </fieldset>
+
+        <div class="field">
+          <label for="f_subjective">Subjective</label>
+          <textarea id="f_subjective" rows="3" placeholder="What the patient reported, in their own words..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f_objective">Objective</label>
+          <textarea id="f_objective" rows="3" placeholder="Observable findings beyond vitals..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f_actions">Actions taken <span class="hint">(one per line)</span></label>
+          <textarea id="f_actions" rows="3" placeholder="Administered 500mg Tylenol at 14:00&#10;Repositioned patient"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f_medications">Medications <span class="hint">(name | dose | time — one per line)</span></label>
+          <textarea id="f_medications" rows="2" placeholder="Tylenol | 500mg | 14:00"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f_assessment">Assessment</label>
+          <textarea id="f_assessment" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f_plan">Plan</label>
+          <textarea id="f_plan" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Flags for review</label>
+          <ul id="f_flags" class="flags-list"></ul>
+        </div>
+      </form>
+
+      <div class="chart-actions">
+        <button id="saveBtn" class="btn btn-process" type="button">Save entry</button>
+        <button id="copyJsonBtn" class="btn btn-ghost" type="button">Copy as JSON</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
