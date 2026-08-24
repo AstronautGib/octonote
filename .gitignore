@@ -224,6 +224,10 @@ __pycache__/
 .venv/
 venv/
 env/
+*.pyc
+backend/uploads/
+data/*.db
+.pytest_cache/
 
 # Environment / secrets
 .env
