@@ -1,7 +1,7 @@
 # OctoNote
 
 <p align="center">
-  <img src="assets/logo.png" alt="OctoNote logo" width="200">
+  <img src="assets/logo.png" alt="OctoNote logo" width="400">
 </p>
 
 OctoNote is an A.I. Clinical Charting Automation Tool. 
@@ -10,11 +10,11 @@ Designed to be used simply as an assisted tool to help out hardworking healthcar
 
 It automatically transcribes the audio, then organizing it into a reviewable, editable chart entry. 
 
-The name is inspired by an octopus since it juggles many things at once.
+The name is inspired by an octopus since it juggles many things at once. Much like a nurse!
 
 I designed the logo myself in PowerPoint! :grin:
 
-# The Inspiration (Why make this?)
+## The Inspiration (Why make this?)
 I grew up in a family that works in healthcare and tech. My nurse family members have mentioned they are always charting, even having to stay overtime frequently just to finish their notes. They have expressed they wish there was something that could help with this so they can spend more time on patient care.
 
 Well, this had me thinking... Couldn't A.I. do this? I studied machine learning and artificial intelligence in college. So, let me put my skills to the test.
@@ -26,25 +26,25 @@ My nurse family members do have some hesitation, however. They wonder, "What if 
 Essentially, I am using this project to explore this challenge and create a working prototype.
 
 
-# Project Status
+## Project Status
 Currently working on this! I will add a demo here when it is ready.
 
 No set deadline so I am taking my time. Since it is just me working on this.
 
 -- Gabriela :relaxed: (10/20/2026)
 
-# Disclaimer
+## Disclaimer
 This is not a real clinical tool! All sample data is synthetic.
 
-Also, I am using Claude to help me with project scope and debugging. Basically, it is my assistant. But this is purely from my own tech brain.
+Also, I am using Claude to help me with project scope and debugging. Basically, it is my assistant. Otherwise this is purely from my own tech brain.
 
 
 ## How Does It Work?
-1.  **Record Audio** -- Healthcare worker presses record and verbally describes the charting detailed information on the patient.
-2.  **Transcription** -- The audio is transcribed locally using [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
-3.  **Structuring** -- The transcript is sent to the **Claude API**, which extracts it into a structured note via a forced tool call built directly from [`schema.json`](schema.json).
-4.  **Human Review** -- The structured draft is shown so it can be corrected before saving as a final version.
-5.  **Save** -- The finalized note is stored locally in SQLite.
+1. **Record Audio** -- Healthcare worker presses record and verbally describes the charting detailed information on the patient.
+2. **Transcription** -- The audio is transcribed locally using [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
+3. **Structuring** -- The transcript is sent to the **Claude API**, which extracts it into a structured note via a forced tool call built directly from [`schema.json`](schema.json).
+4. **Human Review** -- The structured draft is shown so it can be corrected before saving as a final version.
+5. **Save** -- The finalized note is stored locally in SQLite.
 
 
 ## Tech Stack
